@@ -3,10 +3,12 @@ FROM node:current-alpine as backend
 
 WORKDIR /app
 
-COPY backend/package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
+
 RUN npm install
 
-COPY backend ./
+COPY . .
 
 EXPOSE 5000
 

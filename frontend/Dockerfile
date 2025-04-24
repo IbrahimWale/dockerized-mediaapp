@@ -3,10 +3,11 @@ FROM node:18-slim as frontend
 
 WORKDIR /app
 
-COPY frontend/package*.json ./
+COPY package.json ./
+COPY package-lock.json ./
 RUN npm install
 
-COPY frontend ./
+COPY . .
 
 EXPOSE 3000
 

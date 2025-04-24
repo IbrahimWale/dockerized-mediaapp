@@ -1,12 +1,16 @@
+version: '3.8'
+
 services:
   backend:
     build:
-      context: .
-      dockerfile: Dockerfile.backend
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend-app
     ports:
       - "5000:5000"
     volumes:
       - ./backend:/app
+      - /app/node_modules
     depends_on:
       - mongo
     environment:
@@ -15,12 +19,16 @@ services:
 
   frontend:
     build:
-      context: .
-      dockerfile: Dockerfile.frontend
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-app
     ports:
       - "3000:3000"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
     command: npm start
 
   mongo:
