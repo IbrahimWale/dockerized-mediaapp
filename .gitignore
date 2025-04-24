@@ -1,0 +1,7 @@
+/frontend/gitignore
+/frontend/node_modules
+
+/backend/gitignore
+/backend/node_modules
+
+/.vscode
