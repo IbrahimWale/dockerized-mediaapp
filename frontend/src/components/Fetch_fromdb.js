@@ -22,7 +22,7 @@ function FetchDBResource() {
 
   useEffect(() => {
     if (isError) {
-      toast.info(message);
+      toast.info("You have not save again media file");
     }
 
     if (!user) {
