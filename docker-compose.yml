@@ -8,9 +8,12 @@ services:
       - "5000:5000"
     volumes:
       - ./backend:/app
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/opensourcemedia
+      - /app/node_modules
+    env_file:
+      - ./backend/.env
     command: ["npm", "start"]
+    depends_on:
+      - mongo
 
   frontend:
     build:
@@ -21,9 +24,12 @@ services:
       - "3000:3000"
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     environment:
       - CHOKIDAR_USEPOLLING=true
     command: ["npm", "start"]
+    depends_on:
+      - backend
 
   mongo:
     image: mongo:7.0
